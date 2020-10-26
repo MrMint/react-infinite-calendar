@@ -7,14 +7,14 @@ import {
 import {withDefaultProps} from './';
 import {sanitizeDate, withImmutableProps} from '../utils';
 import format from 'date-fns/format';
-import parse from 'date-fns/parse';
+import toDate from 'date-fns/toDate';
 
 export const enhanceDay = withPropsOnChange(['selected'], props => ({
   isSelected: props.selected === props.date,
 }));
 
 const enhanceYear = withPropsOnChange(['selected'], ({selected}) => ({
-  selected: parse(selected),
+  selected: toDate(selected),
 }));
 
 // Enhancer to handle selecting and displaying a single date
@@ -41,14 +41,14 @@ export const withDateSelection = compose(
         Years: {
           onSelect: (year) => handleYearSelect(year, {onSelect, selected, setScrollDate}),
         },
-      },
+      } selected={false},
       selected: selected && format(selected, 'YYYY-MM-DD'),
     };
   }),
 );
 
 function handleYearSelect(date, {setScrollDate, selected, onSelect}) {
-  const newDate = parse(date);
+  const newDate = toDate(date);
 
   onSelect(newDate);
   setScrollDate(newDate);

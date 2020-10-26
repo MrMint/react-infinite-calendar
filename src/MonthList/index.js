@@ -92,7 +92,7 @@ export default class MonthList extends Component {
       locale: { weekStartsOn },
       height,
     } = this.props;
-    const weeks = getWeek(startOfMonth(min), parse(date), weekStartsOn);
+    const weeks = getWeek(startOfMonth(min), toDate(date), weekStartsOn);
 
     return weeks * rowHeight - (height - rowHeight / 2) / 2;
   }
