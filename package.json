@@ -1,6 +1,6 @@
 {
-  "name": "react-infinite-calendar",
-  "version": "2.3.1",
+  "name": "@mr_mint/react-infinite-calendar",
+  "version": "2.4.5",
   "description": "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -44,25 +44,24 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
-    "node-sass": "^4.5.0",
-    "nwb": "^0.15.6",
-    "nwb-sass": "^0.7.1",
+    "node-sass": "4.14.1",
+    "nwb": "0.25.2",
+    "nwb-sass": "0.10.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "author": {
-    "name": "Clauderic Demers",
-    "email": "me@ced.io"
+    "name": "Jared Prather"
   },
   "user": "clauderic",
-  "homepage": "https://github.com/clauderic/react-infinite-calendar",
+  "homepage": "https://github.com/mrmint/react-infinite-calendar",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/clauderic/react-infinite-calendar.git"
+    "url": "https://github.com/mrmint/react-infinite-calendar.git"
   },
   "bugs": {
-    "url": "https://github.com/clauderic/react-infinite-calendar/issues"
+    "url": "https://github.com/mrmint/react-infinite-calendar/issues"
   },
   "keywords": [
     "react",
