@@ -19,7 +19,7 @@ export default function defaultSelectionRenderer(
     shouldAnimate,
   },
 ) {
-  const date = toDate(value);
+  const date = new Date(value);
   const values = date && [
     {
       active: display === "years",
@@ -43,9 +43,9 @@ export default function defaultSelectionRenderer(
       item: "day",
       title:
         display === "days"
-          ? `Scroll to ${format(date, dateFormat, { locale })}`
+          ? `Scroll to ${format(new Date(date), dateFormat, { locale })}`
           : null,
-      value: format(date, dateFormat, { locale }),
+      value: format(new Date(date), dateFormat, { locale }),
     },
   ];
 
@@ -53,7 +53,7 @@ export default function defaultSelectionRenderer(
     <div
       key={key}
       className={styles.wrapper}
-      aria-label={format(date, dateFormat + " YYYY", { locale })}
+      aria-label={format(new Date(date), dateFormat + " yyyy", { locale })}
     >
       {values.map(({ handleClick, item, key, value, active, title }) => {
         return (

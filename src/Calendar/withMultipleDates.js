@@ -12,7 +12,7 @@ export const enhanceDay = withPropsOnChange(["selected"], (props) => ({
 
 // Enhance year component
 const enhanceYears = withProps(({ displayDate }) => ({
-  selected: displayDate ? toDate(displayDate) : null,
+  selected: displayDate ? new Date(displayDate) : null,
 }));
 
 // Enhancer to handle selecting and displaying multiple dates
@@ -42,7 +42,7 @@ export const withMultipleDates = compose(
       },
       selected: props.selected
         .filter((date) => sanitizeDate(date, props))
-        .map((date) => format(date, "YYYY-MM-DD")),
+        .map((date) => format(new Date(date), "yyyy-MM-dd")),
     }),
   ),
 );
@@ -53,7 +53,7 @@ function handleSelect(date, { onSelect, setDisplayDate }) {
 }
 
 function handleYearSelect(date, callback) {
-  callback(toDate(date));
+  callback(new Date(date));
 }
 
 function getInitialDate({ selected }) {
@@ -61,8 +61,10 @@ function getInitialDate({ selected }) {
 }
 
 export function defaultMultipleDateInterpolation(date, selected) {
-  const selectedMap = selected.map((date) => format(date, "YYYY-MM-DD"));
-  const index = selectedMap.indexOf(format(date, "YYYY-MM-DD"));
+  const selectedMap = selected.map((date) =>
+    format(new Date(date), "yyyy-MM-dd"),
+  );
+  const index = selectedMap.indexOf(format(new Date(date), "yyyy-MM-dd"));
 
   return index === -1
     ? [...selected, date]

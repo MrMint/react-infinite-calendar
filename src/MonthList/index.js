@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import VirtualList from "react-tiny-virtual-list";
 import classNames from "classnames";
 import { emptyFn, getMonth, getWeek, getWeeksInMonth, animate } from "../utils";
-import parse from "date-fns/parse";
-import startOfMonth from "date-fns/start_of_month";
+import toDate from "date-fns/toDate";
+import startOfMonth from "date-fns/startOfMonth";
 import Month from "../Month";
 import styles from "./MonthList.scss";
 
@@ -92,7 +92,7 @@ export default class MonthList extends Component {
       locale: { weekStartsOn },
       height,
     } = this.props;
-    const weeks = getWeek(startOfMonth(min), toDate(date), weekStartsOn);
+    const weeks = getWeek(startOfMonth(min), new Date(date), weekStartsOn);
 
     return weeks * rowHeight - (height - rowHeight / 2) / 2;
   }

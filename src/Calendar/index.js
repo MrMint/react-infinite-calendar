@@ -14,7 +14,7 @@ import Years from "../Years";
 import Day from "../Day";
 import toDate from "date-fns/toDate";
 import format from "date-fns/format";
-import startOfDay from "date-fns/start_of_day";
+import startOfDay from "date-fns/startOfDay";
 
 const styles = {
   container: require("./Container.scss"),
@@ -136,10 +136,10 @@ export default class Calendar extends Component {
     }
   }
   updateYears(props = this.props) {
-    this._min = toDate(props.min);
-    this._max = toDate(props.max);
-    this._minDate = toDate(props.minDate);
-    this._maxDate = toDate(props.maxDate);
+    this._min = new Date(props.min);
+    this._max = new Date(props.max);
+    this._minDate = new Date(props.minDate);
+    this._maxDate = new Date(props.maxDate);
 
     const min = this._min.getFullYear();
     const minMonth = this._min.getMonth();
@@ -166,7 +166,7 @@ export default class Calendar extends Component {
   getDisabledDates(disabledDates) {
     return (
       disabledDates &&
-      disabledDates.map((date) => format(toDate(date), "YYYY-MM-DD"))
+      disabledDates.map((date) => format(new Date(date), "yyyy-MM-dd"))
     );
   }
   _displayOptions = {};

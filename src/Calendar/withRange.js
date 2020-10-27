@@ -2,7 +2,7 @@ import { compose, withProps, withPropsOnChange, withState } from "recompose";
 import classNames from "classnames";
 import { withDefaultProps } from "./";
 import { withImmutableProps } from "../utils";
-import isBefore from "date-fns/is_before";
+import isBefore from "date-fns/isBefore";
 import enhanceHeader from "../Header/withRange";
 import format from "date-fns/format";
 import toDate from "date-fns/toDate";
@@ -78,8 +78,8 @@ export const withRange = compose(
         },
       },
       selected: {
-        start: selected && format(selected.start, "YYYY-MM-DD"),
-        end: selected && format(selected.end, "YYYY-MM-DD"),
+        start: selected && format(new Date(selected.start), "yyyy-MM-dd"),
+        end: selected && format(new Date(selected.end), "yyyy-MM-dd"),
       },
     }),
   ),
@@ -110,7 +110,7 @@ function handleSelect(
 
 function handleMouseOver(e, { onSelect, selectionStart }) {
   const dateStr = e.target.getAttribute("data-date");
-  const date = dateStr && toDate(dateStr);
+  const date = dateStr && new Date(dateStr);
 
   if (!date) {
     return;
@@ -132,7 +132,7 @@ function handleYearSelect(
   setScrollDate(date);
   onSelect(
     getSortedSelection(
-      Object.assign({}, selected, { [displayKey]: toDate(date) }),
+      Object.assign({}, selected, { [displayKey]: new Date(date) }),
     ),
   );
 }

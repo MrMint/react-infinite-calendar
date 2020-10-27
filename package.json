@@ -1,6 +1,6 @@
 {
   "name": "@mr_mint/react-infinite-calendar",
-  "version": "2.4.5",
+  "version": "2.4.15",
   "description": "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -22,16 +22,16 @@
     "lint": "eslint --fix src/**/*.js"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
+    "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
-    "dom-helpers": "^3.2.1",
-    "prop-types": "^15.5.7",
-    "react-tiny-virtual-list": "^2.0.0",
+    "dom-helpers": "3.2.1",
+    "prop-types": "15.7.2",
+    "react-tiny-virtual-list": "^2.2.0",
     "react-transition-group": "^1.1.3",
-    "recompose": "^0.22.0"
+    "recompose": "0.30.0"
   },
   "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0-alpha"
+    "react": "^16.13.1"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.3",
@@ -47,8 +47,8 @@
     "node-sass": "4.14.1",
     "nwb": "0.25.2",
     "nwb-sass": "0.10.2",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "author": {
     "name": "Jared Prather"

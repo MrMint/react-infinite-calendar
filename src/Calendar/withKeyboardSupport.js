@@ -1,48 +1,48 @@
-import {
-  compose,
-  withHandlers,
-  withProps,
-  withState,
-} from 'recompose';
-import addDays from 'date-fns/add_days';
-import format from 'date-fns/format';
-import isAfter from 'date-fns/is_after';
-import isBefore from 'date-fns/is_before';
-import {keyCodes, withImmutableProps} from '../utils';
+import { compose, withHandlers, withProps, withState } from "recompose";
+import addDays from "date-fns/addDays";
+import format from "date-fns/format";
+import isAfter from "date-fns/isAfter";
+import isBefore from "date-fns/isBefore";
+import toDate from "date-fns/toDate";
+import { keyCodes, withImmutableProps } from "../utils";
 
-const enhanceDay = withProps(props => ({
+const enhanceDay = withProps((props) => ({
   isHighlighted: props.highlightedDate === props.date,
 }));
 
 export const withKeyboardSupport = compose(
-  withState('highlightedDate', 'setHighlight'),
-  withImmutableProps(({DayComponent}) => ({
+  withState("highlightedDate", "setHighlight"),
+  withImmutableProps(({ DayComponent }) => ({
     DayComponent: enhanceDay(DayComponent),
   })),
   withHandlers({
-    onKeyDown: props => e => handleKeyDown(e, props),
+    onKeyDown: (props) => (e) => handleKeyDown(e, props),
   }),
-  withProps(({highlightedDate, onKeyDown, onSelect, passThrough, setHighlight}) => ({
-    passThrough: {
-      ...passThrough,
-      Day: {
-        ...passThrough.Day,
-        highlightedDate: format(highlightedDate, 'YYYY-MM-DD'),
-        onClick: (date) => {
-          setHighlight(null);
-          passThrough.Day.onClick(date);
+  withProps(
+    ({ highlightedDate, onKeyDown, onSelect, passThrough, setHighlight }) => ({
+      passThrough: {
+        ...passThrough,
+        Day: {
+          ...passThrough.Day,
+          highlightedDate: format(new Date(highlightedDate), "yyyy-MM-dd"),
+          onClick: (date) => {
+            setHighlight(null);
+            passThrough.Day.onClick(date);
+          },
         },
+        rootNode: { onKeyDown },
       },
-      rootNode: {onKeyDown},
-    },
-  })),
+    }),
+  ),
 );
 
 function handleKeyDown(e, props) {
   const {
     minDate,
     maxDate,
-    passThrough: {Day: {onClick}},
+    passThrough: {
+      Day: { onClick },
+    },
     setScrollDate,
     setHighlight,
   } = props;
@@ -53,7 +53,7 @@ function handleKeyDown(e, props) {
     [keyCodes.left, keyCodes.up, keyCodes.right, keyCodes.down].indexOf(
       e.keyCode,
     ) > -1 &&
-    typeof e.preventDefault === 'function'
+    typeof e.preventDefault === "function"
   ) {
     e.preventDefault();
   }
@@ -93,6 +93,8 @@ function handleKeyDown(e, props) {
   }
 }
 
-function getInitialDate({highlightedDate, selected, displayDate}) {
-  return highlightedDate || selected.start || displayDate || selected || new Date();
+function getInitialDate({ highlightedDate, selected, displayDate }) {
+  return (
+    highlightedDate || selected.start || displayDate || selected || new Date()
+  );
 }
